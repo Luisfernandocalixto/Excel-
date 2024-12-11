@@ -84,9 +84,10 @@
     <script type="module">
         const $ = el => document.querySelector(el);
         const $$ = el => document.querySelectorAll(el);
-        const $table = $('table')
-        const $head = $('thead')
-        const $body = $('tbody')
+
+        const $table = $('table');
+        const $head = $('thead');
+        const $body = $('tbody');
 
         const ROWS = 10;
         const COLUMNS = 5;
@@ -176,7 +177,7 @@
                     <td data-x="${column}"  data-y="${row}">
                         <span>${STATE[column][row].computedValue}</span>
                         <input type="text" value="${STATE[column][row].value}">
-                        </td>`).join(' ')}
+                        </td>`).join('')}
                         </tr>`
             }).join(' ')
 
@@ -224,20 +225,17 @@
 
             $$('.selected').forEach(el => el.classList.remove('selected'))
             th.classList.add('selected')
-            $$(`tr td:nth-child(${x + 1})`).forEach(el => el.classList.add('selected'))
-
-            document.addEventListener('keydown', event => {
-                if (event.key === 'Backspace' && selectedColumn !== null) {
-                    times(ROWS).forEach(row => {
-                        updateCell({ x: selectedColumn, y: row, value: '' })
-                    })
-                    renderSpreadSheet()
-                }
-
-            })
-
+            $$(`tr td:nth-child(${x + 1})`).forEach(el => el.classList.add('selected'))            
         })
-
+        
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Backspace' && selectedColumn !== null) {
+                times(ROWS).forEach(row => {
+                    updateCell({ x: selectedColumn, y: row, value: '' });
+                })
+                renderSpreadSheet();
+            }
+        })
 
         document.addEventListener('copy', event => {
             if (selectedColumn !== null) {
@@ -261,16 +259,7 @@
                 selectedColumn = null;
             }
         })
-        12
-15
-1
-4
-9
-10
-12
-1
-2
-24
+
         renderSpreadSheet()
 
     </script>
